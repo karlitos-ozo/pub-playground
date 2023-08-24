@@ -40,5 +40,6 @@ jobs:
           fi
           echo "::notice title=REFRENCE:: $REFRENCE"
           echo "::notice title=EVENT_NAME:: $EVENT_NAME"
+          echo "::notice title=REF_TYPE:: $REF_TYPE"
           branch=$(git rev-parse --abbrev-ref HEAD)
           echo "::notice title=Current branch is $branch:: nothing to see here"
