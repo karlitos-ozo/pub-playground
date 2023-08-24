@@ -33,13 +33,14 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script      
         env:
-          REFRENCE: ${{ github.ref_name }}
+          REFRENCE: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
           EVENT_NAME: ${{ github.event_name }}
           REF_TYPE: ${{ github.ref_type }}
         run: |
           if [[ "${REF_TYPE}" != "tag" ]]; then
             export REFRENCE=$(git rev-parse --abbrev-ref HEAD) # if ran by PR, it wil set the tag to the branch name
           fi
+
           echo "::notice title=REFRENCE:: $REFRENCE"
           echo "::notice title=EVENT_NAME:: $EVENT_NAME"
           echo "::notice title=REF_TYPE:: $REF_TYPE"
