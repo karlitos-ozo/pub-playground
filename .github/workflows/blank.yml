@@ -37,7 +37,7 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           REF_TYPE: ${{ github.ref_type }}
         run: |
-          if [[ "${REF_TYPE}" != "tag" ]]; then
+          if [[ "${REF_TYPE}" != "tag"  && "${EVENT_NAME}" != "pull_request" ]]; then
             export REFRENCE=$(git rev-parse --abbrev-ref HEAD) # if ran by PR, it wil set the tag to the branch name
           fi
 
